@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrito - La Miga Dorada</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                cream: "#FAF8F5",
+                dark: "#2D211E",
+                darkHover: "#382823",
+                gold: "#C19B6C",
+                goldLight: "#E8D2B5",
+                muted: "#776E65",
+                badgeBg: "#FFFFFF",
+                cardBg: "#FFFFFF",
+                footer: "#261B18",
+                iconBg: "#FAF3EA",
+              },
+            },
+            fontFamily: {
+              serif: ["Playfair Display", "serif"],
+              sans: ["Plus Jakarta Sans", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      body {
+        background-color: #faf8f5;
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+      .font-serif {
+        font-family: "Playfair Display", serif;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col text-brand-dark">
+    <!-- Header Header -->
+    <header
+      class="bg-white/95 backdrop-blur-md border-b border-brand-gold/15 sticky top-0 z-50"
+    >
+      <div
+        class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between"
+      >
+        <a href="index.html" class="flex items-center space-x-3"
+          ><div
+            class="w-11 h-11 rounded-full bg-brand-iconBg border border-brand-gold/30 flex items-center justify-center text-brand-gold font-serif font-bold text-xl"
+          >
+            M
+          </div>
+          <div class="flex flex-col">
+            <span class="font-serif font-bold">La Miga Dorada</span
+            ><span class="text-[9px] text-brand-gold uppercase"
+              >PANADERÍA BOUTIQUE</span
+            >
+          </div></a
+        >
+        <a
+          href="index.html"
+          class="hidden sm:flex items-center text-xs font-medium text-brand-muted hover:text-brand-dark transition-colors"
+          ><i class="fa-solid fa-arrow-left mr-2"></i> Volver a la tienda</a
+        >
+        <div class="flex items-center space-x-4">
+          <a
+            href="carrito.html"
+            class="flex items-center space-x-2 bg-brand-iconBg px-4 py-2 rounded-full border border-brand-gold/20"
+            ><i class="fa-solid fa-bag-shopping text-sm"></i
+            ><span
+              class="text-xs font-bold bg-brand-dark text-white rounded-full w-5 h-5 flex items-center justify-center"
+              >3</span
+            ></a
+          ><img
+            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120"
+            class="w-9 h-9 rounded-full object-cover"
+          />
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-10 w-full flex-grow">
+      <!-- Breadcrumbs -->
+      <div
+        class="flex items-center text-xs text-brand-muted mb-8 space-x-3 font-medium"
+      >
+        <span class="flex items-center space-x-2 text-brand-gold"
+          ><span
+            class="w-5 h-5 rounded-full bg-brand-gold text-white flex items-center justify-center"
+            >1</span
+          ><span>Mi Carrito</span></span
+        >
+        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+        <span class="flex items-center space-x-2"
+          ><span
+            class="w-5 h-5 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center"
+            >2</span
+          ><span>Datos de Envío</span></span
+        >
+        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+        <span class="flex items-center space-x-2"
+          ><span
+            class="w-5 h-5 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center"
+            >3</span
+          ><span>Confirmación</span></span
+        >
+      </div>
+
+      <h1 class="font-serif text-4xl mb-8">Tu Carrito de Compras</h1>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Lista de Productos -->
+        <div
+          class="lg:col-span-2 bg-white rounded-2xl p-6 shadow-sm border border-gray-100"
+        >
+          <!-- Tabla Headers -->
+          <div
+            class="hidden md:grid grid-cols-12 gap-4 border-b border-gray-100 pb-4 text-xs font-bold text-gray-500 mb-6"
+          >
+            <div class="col-span-6">Producto</div>
+            <div class="col-span-2 text-center">Precio Unitario</div>
+            <div class="col-span-2 text-center">Cantidad</div>
+            <div class="col-span-2 text-right">Total</div>
+          </div>
+
+          <!-- Items -->
+          <div class="space-y-6">
+            <!-- Item 1 -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+              <div class="col-span-6 flex items-center space-x-4">
+                <img
+                  src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&q=80&w=200"
+                  class="w-20 h-20 rounded-lg object-cover"
+                />
+                <div>
+                  <h4 class="font-serif text-lg text-brand-dark">
+                    Tarta de Fresa & Crema
+                  </h4>
+                  <p class="text-xs text-brand-muted mt-1 max-w-xs">
+                    Crema pastelera infusionada con vainilla bourbon, fresas de
+                    cultivo local.
+                  </p>
+                </div>
+              </div>
+              <div class="col-span-2 text-center text-sm font-medium">
+                $24.50
+              </div>
+              <div class="col-span-2 flex justify-center">
+                <div
+                  class="flex items-center border border-gray-200 rounded-lg px-2 py-1"
+                >
+                  <button class="px-2 text-gray-400 hover:text-brand-dark">
+                    -
+                  </button>
+                  <span class="px-3 text-sm font-medium">1</span>
+                  <button class="px-2 text-gray-400 hover:text-brand-dark">
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="col-span-2 text-right font-bold text-brand-dark">
+                $24.50
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div
+              class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center border-t border-gray-100 pt-6"
+            >
+              <div class="col-span-6 flex items-center space-x-4">
+                <img
+                  src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=200"
+                  class="w-20 h-20 rounded-lg object-cover"
+                />
+                <div>
+                  <h4 class="font-serif text-lg text-brand-dark">
+                    Babka de Cacao & Avellanas
+                  </h4>
+                  <p class="text-xs text-brand-muted mt-1 max-w-xs">
+                    Masa brioche con remolinos de cacao puro al 70% y trozos de
+                    avellana.
+                  </p>
+                </div>
+              </div>
+              <div class="col-span-2 text-center text-sm font-medium">
+                $18.00
+              </div>
+              <div class="col-span-2 flex justify-center">
+                <div
+                  class="flex items-center border border-gray-200 rounded-lg px-2 py-1"
+                >
+                  <button class="px-2 text-gray-400 hover:text-brand-dark">
+                    -
+                  </button>
+                  <span class="px-3 text-sm font-medium">2</span>
+                  <button class="px-2 text-gray-400 hover:text-brand-dark">
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="col-span-2 text-right font-bold text-brand-dark">
+                $36.00
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div
+              class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center border-t border-gray-100 pt-6"
+            >
+              <div class="col-span-6 flex items-center space-x-4">
+                <img
+                  src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=200"
+                  class="w-20 h-20 rounded-lg object-cover"
+                />
+                <div>
+                  <h4 class="font-serif text-lg text-brand-dark">
+                    Croissant de Almendras Relleno
+                  </h4>
+                  <p class="text-xs text-brand-muted mt-1 max-w-xs">
+                    Hojaldre relleno de frangipane tradicional, cubierto de
+                    láminas crujientes.
+                  </p>
+                </div>
+              </div>
+              <div class="col-span-2 text-center text-sm font-medium">
+                $6.50
+              </div>
+              <div class="col-span-2 flex justify-center">
+                <div
+                  class="flex items-center border border-gray-200 rounded-lg px-2 py-1"
+                >
+                  <button class="px-2 text-gray-400 hover:text-brand-dark">
+                    -
+                  </button>
+                  <span class="px-3 text-sm font-medium">3</span>
+                  <button class="px-2 text-gray-400 hover:text-brand-dark">
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="col-span-2 text-right font-bold text-brand-dark">
+                $19.50
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-10 border-t border-gray-100 pt-6">
+            <a
+              href="index.html"
+              class="text-brand-gold text-sm font-medium hover:underline flex items-center"
+              ><i class="fa-solid fa-arrow-left mr-2"></i> Continuar comprando
+              pasteles</a
+            >
+          </div>
+        </div>
+
+        <!-- Resumen del Pedido -->
+        <div class="lg:col-span-1">
+          <div
+            class="bg-white rounded-2xl p-7 shadow-sm border border-gray-100"
+          >
+            <h2 class="font-serif text-2xl border-b border-gray-100 pb-4 mb-6">
+              Resumen del Pedido
+            </h2>
+
+            <div class="space-y-4 text-sm">
+              <div class="flex justify-between">
+                <span class="text-gray-500">Subtotal</span
+                ><span class="font-medium">$80.00</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-500">Envío Gourmet (Local)</span
+                ><span class="font-medium">$5.50</span>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-6 border-t border-gray-100">
+              <label class="block text-xs font-bold text-brand-dark mb-2"
+                >Código de Descuento</label
+              >
+              <div class="flex space-x-2">
+                <input
+                  type="text"
+                  value="PRIMERAMIGA"
+                  class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm bg-gray-50 focus:outline-none"
+                  readonly
+                />
+                <button
+                  class="bg-brand-dark text-white px-5 rounded-lg text-xs font-medium hover:bg-brand-darkHover"
+                >
+                  Aplicar
+                </button>
+              </div>
+              <p class="text-[10px] text-green-600 mt-2 font-medium">
+                ¡Cupón de bienvenida aplicado! (10% descuento en subtotal)
+              </p>
+            </div>
+
+            <div
+              class="mt-6 pt-6 border-t border-gray-100 flex justify-between items-end"
+            >
+              <div>
+                <span class="block font-serif text-lg font-bold"
+                  >Total del Pedido</span
+                >
+              </div>
+              <div class="text-right">
+                <span class="block font-serif text-2xl font-bold">$77.50</span>
+                <span class="text-[10px] text-gray-400">IVA incluido</span>
+              </div>
+            </div>
+
+            <a
+              href="checkout.html"
+              class="block w-full text-center bg-brand-dark text-white rounded-xl py-3.5 mt-8 font-medium text-sm hover:bg-brand-darkHover transition-colors"
+              >Finalizar Compra</a
+            >
+
+            <p
+              class="text-center text-[10px] text-green-700 mt-4 flex items-center justify-center"
+            >
+              <i class="fa-solid fa-lock mr-1.5"></i> Transacción segura con
+              cifrado SSL de 256 bits.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer
+      class="bg-brand-footer text-white py-6 text-center text-xs text-gray-400 mt-auto"
+    >
+      <p>© 2026 La Miga Dorada. Todos los derechos reservados.</p>
+    </footer>
+  </body>
+</html>
