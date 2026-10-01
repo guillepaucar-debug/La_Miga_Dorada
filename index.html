@@ -4,8 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>La Miga Dorada - Panadería Boutique</title>
-
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -33,541 +31,159 @@
         },
       };
     </script>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- FontAwesome Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-
-    <style>
-      body {
-        background-color: #faf8f5;
-        color: #2d211e;
-        font-family: "Plus Jakarta Sans", sans-serif;
-      }
-      .font-serif {
-        font-family: "Playfair Display", serif;
-      }
-      .no-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
-      .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   </head>
-  <body
-    class="bg-brand-cream text-brand-dark min-h-screen flex flex-col justify-between selection:bg-brand-gold selection:text-white"
-  >
-    <!-- Top Navigation Header -->
-    <header
-      class="sticky top-0 z-50 bg-brand-cream/95 backdrop-blur-md border-b border-brand-gold/15 transition-all duration-300"
-    >
-      <div
-        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between"
-      >
-        <!-- Brand Logo -->
-        <a href="index.html" class="flex items-center space-x-3 group">
-          <div
-            class="w-11 h-11 rounded-full bg-brand-iconBg border border-brand-gold/30 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-300"
-          >
-            <span class="font-serif text-xl font-bold text-brand-gold">M</span>
-          </div>
-          <div class="flex flex-col">
-            <span
-              class="font-serif text-lg leading-tight font-bold tracking-wide text-brand-dark"
-              >La Miga Dorada</span
-            >
-          </div>
+  <body class="bg-brand-cream text-brand-dark min-h-screen flex flex-col justify-between">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-brand-cream/95 backdrop-blur-md border-b border-brand-gold/15">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <a href="index.html" class="flex items-center space-x-3">
+          <div class="w-11 h-11 rounded-full bg-brand-iconBg border border-brand-gold/30 flex items-center justify-center text-brand-gold font-serif font-bold text-xl">M</div>
+          <span class="font-serif text-lg font-bold">La Miga Dorada</span>
         </a>
 
-        <!-- Navigation Links -->
         <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
-          <a
-            href="index.html"
-            class="text-brand-dark font-semibold relative py-1"
-          >
-            Inicio
-            <span
-              class="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-[2px] bg-brand-gold rounded-full"
-            ></span>
-          </a>
-          <a
-            href="login.html"
-            class="text-brand-muted hover:text-brand-dark transition-colors"
-            >Iniciar Sesión</a
-          >
-          <a
-            href="registro.html"
-            class="text-brand-muted hover:text-brand-dark transition-colors"
-            >Crear Cuenta</a
-          >
-          <a
-            href="checkout.html"
-            class="text-brand-muted hover:text-brand-dark transition-colors"
-            >Finalizar Compra</a
-          >
+          <a href="index.html" class="text-brand-dark font-semibold">Inicio</a>
+          <a href="login.html" class="text-brand-muted hover:text-brand-dark">Iniciar Sesión</a>
+          <a href="registro.html" class="text-brand-muted hover:text-brand-dark">Crear Cuenta</a>
+          <a href="checkout.html" class="text-brand-muted hover:text-brand-dark">Finalizar Compra</a>
         </nav>
 
-        <!-- Right Actions (Cart, Profile, Mobile Menu) -->
         <div class="flex items-center space-x-4">
-          <!-- Cart Button -->
-          <a
-            href="carrito.html"
-            id="cart-btn"
-            class="flex items-center space-x-2.5 bg-brand-iconBg hover:bg-brand-gold/15 text-brand-dark px-4 py-2 rounded-full border border-brand-gold/20 transition-all duration-300 active:scale-95 shadow-xs"
-          >
-            <i class="fa-solid fa-bag-shopping text-brand-dark text-sm"></i>
-            <span
-              id="cart-count"
-              class="text-xs font-bold bg-brand-dark text-white rounded-full w-5 h-5 flex items-center justify-center"
-              >3</span
-            >
+          <a href="carrito.html" class="flex items-center space-x-2 bg-brand-iconBg px-4 py-2 rounded-full border border-brand-gold/20">
+            <i class="fa-solid fa-bag-shopping text-sm"></i>
+            <span id="cart-count" class="text-xs font-bold bg-brand-dark text-white rounded-full w-5 h-5 flex items-center justify-center">0</span>
           </a>
-
-          <!-- Divider -->
-          <div class="hidden sm:block h-6 w-[1px] bg-brand-gold/20"></div>
-
-          <!-- User Profile Avatar -->
-          <a
-            href="login.html"
-            class="hidden sm:flex items-center space-x-2.5 hover:opacity-80 transition-opacity"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120"
-              alt="Perfil"
-              class="w-9 h-9 rounded-full object-cover ring-2 ring-brand-gold/30"
-            />
-          </a>
-
-          <!-- Mobile Menu Toggle -->
-          <button
-            id="mobile-menu-btn"
-            onclick="toggleMobileMenu()"
-            class="md:hidden text-brand-dark p-2 rounded-lg hover:bg-brand-gold/10"
-          >
-            <i class="fa-solid fa-bars text-lg"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Mobile Drawer -->
-      <div
-        id="mobile-menu"
-        class="hidden md:hidden border-b border-brand-gold/10 bg-brand-cream px-6 py-4 space-y-3"
-      >
-        <a href="index.html" class="block text-brand-dark font-semibold py-1"
-          >Inicio</a
-        >
-        <a
-          href="login.html"
-          class="block text-brand-muted hover:text-brand-dark py-1"
-          >Iniciar Sesión</a
-        >
-        <a
-          href="registro.html"
-          class="block text-brand-muted hover:text-brand-dark py-1"
-          >Crear Cuenta</a
-        >
-        <a
-          href="checkout.html"
-          class="block text-brand-muted hover:text-brand-dark py-1"
-          >Finalizar Compra</a
-        >
-
-        <!-- Mobile Profile -->
-        <div
-          class="pt-3 border-t border-brand-gold/10 flex items-center space-x-3"
-        >
-          <img
-            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120"
-            alt="Perfil"
-            class="w-8 h-8 rounded-full object-cover"
-          />
-          <a href="login.html" class="text-sm font-medium text-brand-dark"
-            >Mi Perfil</a
-          >
         </div>
       </div>
     </header>
 
-    <!-- Hero Section -->
-    <section
-      class="relative w-full h-[380px] sm:h-[420px] lg:h-[460px] flex items-center overflow-hidden"
-    >
-      <img
-        src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=2000"
-        alt="Panadería Boutique"
-        class="absolute inset-0 w-full h-full object-cover object-center filter brightness-90"
-      />
-      <div
-        class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/35"
-      ></div>
-      <div
-        class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white w-full"
-      >
-        <div class="max-w-2xl space-y-4">
-          <h1
-            class="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal tracking-wide text-white leading-tight"
-          >
-            Nuestros Productos
-          </h1>
-          <p
-            class="text-gray-200 text-sm sm:text-base leading-relaxed font-light font-sans max-w-xl"
-          >
-            Descubre nuestra selección de repostería boutique y panes
-            artesanales horneados diariamente con pasión, paciencia y los
-            mejores ingredientes naturales.
-          </p>
-        </div>
+    <!-- Hero -->
+    <section class="relative w-full h-[360px] flex items-center overflow-hidden">
+      <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=2000" class="absolute inset-0 w-full h-full object-cover filter brightness-90" />
+      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="relative max-w-7xl mx-auto px-4 text-white">
+        <h1 class="font-serif text-4xl sm:text-5xl">Nuestros Productos Artisanal</h1>
+        <p class="text-sm mt-2 max-w-xl font-light">Repostería fina y panes artesanales recién horneados cada mañana.</p>
       </div>
     </section>
 
-    <!-- Main Catalog Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full flex-grow">
-      <!-- Filter Tabs & Product Counter -->
-      <div
-        class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10"
-      >
-        <div
-          class="flex items-center space-x-2 overflow-x-auto pb-2 md:pb-0 no-scrollbar"
-          id="filter-tabs"
-        >
-          <button
-            onclick="filterCategory('Todos')"
-            class="filter-btn active bg-brand-dark text-white px-5 py-2 rounded-full text-sm font-medium transition-all shadow-xs shrink-0"
-          >
-            Todos
-          </button>
-          <button
-            onclick="filterCategory('Tortas')"
-            class="filter-btn bg-white hover:bg-brand-gold/10 text-brand-dark border border-gray-200 px-5 py-2 rounded-full text-sm font-medium transition-all shrink-0"
-          >
-            Tortas
-          </button>
-          <button
-            onclick="filterCategory('Panes de Molde')"
-            class="filter-btn bg-white hover:bg-brand-gold/10 text-brand-dark border border-gray-200 px-5 py-2 rounded-full text-sm font-medium transition-all shrink-0"
-          >
-            Panes de Molde
-          </button>
-          <button
-            onclick="filterCategory('Panecillos')"
-            class="filter-btn bg-white hover:bg-brand-gold/10 text-brand-dark border border-gray-200 px-5 py-2 rounded-full text-sm font-medium transition-all shrink-0"
-          >
-            Panecillos
-          </button>
+    <!-- Catalog -->
+    <main class="max-w-7xl mx-auto px-4 py-10 w-full flex-grow">
+      <div class="flex flex-col md:flex-row justify-between gap-4 mb-8">
+        <div class="flex items-center space-x-2 overflow-x-auto pb-2" id="filter-tabs">
+          <button class="filter-btn active bg-brand-dark text-white px-5 py-2 rounded-full text-sm font-medium" onclick="filterCategory('Todos', this)">Todos</button>
+          <button class="filter-btn bg-white border border-gray-200 px-5 py-2 rounded-full text-sm font-medium" onclick="filterCategory('Tortas', this)">Tortas</button>
+          <button class="filter-btn bg-white border border-gray-200 px-5 py-2 rounded-full text-sm font-medium" onclick="filterCategory('Panes de Molde', this)">Panes</button>
+          <button class="filter-btn bg-white border border-gray-200 px-5 py-2 rounded-full text-sm font-medium" onclick="filterCategory('Panecillos', this)">Panecillos</button>
         </div>
-        <div class="text-sm text-brand-muted shrink-0 self-end md:self-center">
-          Mostrando
-          <span id="visible-count" class="font-bold text-brand-dark">9</span>
-          productos
-        </div>
+        <div class="text-sm text-brand-muted">Mostrando <span id="visible-count" class="font-bold text-brand-dark">0</span> productos</div>
       </div>
 
-      <!-- Product Grid Container -->
-      <div
-        id="product-grid"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-      >
-        <!-- Product cards injected by JavaScript -->
-      </div>
+      <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
     </main>
 
-    <!-- Footer -->
-    <footer
-      class="bg-brand-footer text-white pt-16 pb-10 border-t border-brand-footer"
-    >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
-          <!-- Brand Description -->
-          <div class="space-y-5">
-            <h2 class="font-serif text-2xl font-normal text-white">
-              La Miga Dorada
-            </h2>
-            <p class="text-gray-300 text-sm leading-relaxed font-light">
-              Horneamos con el alma, ofreciendo tradición y los mejores
-              ingredientes naturales en cada bocado.
-            </p>
-          </div>
-
-          <!-- Links Rápidos -->
-          <div class="space-y-3">
-            <h3
-              class="text-xs font-bold tracking-widest text-brand-gold uppercase"
-            >
-              NAVEGACIÓN
-            </h3>
-            <ul class="space-y-2.5 text-sm text-gray-300 font-light">
-              <li>
-                <a
-                  href="index.html"
-                  class="hover:text-brand-gold transition-colors"
-                  >Inicio</a
-                >
-              </li>
-              <li>
-                <a
-                  href="carrito.html"
-                  class="hover:text-brand-gold transition-colors"
-                  >Mi Carrito</a
-                >
-              </li>
-              <li>
-                <a
-                  href="checkout.html"
-                  class="hover:text-brand-gold transition-colors"
-                  >Finalizar Compra</a
-                >
-              </li>
-            </ul>
-          </div>
-
-          <!-- Account Links -->
-          <div class="space-y-3">
-            <h3
-              class="text-xs font-bold tracking-widest text-brand-gold uppercase"
-            >
-              TU CUENTA
-            </h3>
-            <ul class="space-y-2.5 text-sm text-gray-300 font-light">
-              <li>
-                <a
-                  href="login.html"
-                  class="hover:text-brand-gold transition-colors"
-                  >Iniciar Sesión</a
-                >
-              </li>
-              <li>
-                <a
-                  href="registro.html"
-                  class="hover:text-brand-gold transition-colors"
-                  >Crear Cuenta</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Footer Bottom -->
-        <div
-          class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4"
-        >
-          <p>© 2026 La Miga Dorada. Todos los derechos reservados.</p>
-        </div>
-      </div>
-    </footer>
-
     <!-- Toast Notification -->
-    <div
-      id="toast"
-      class="fixed bottom-6 right-6 bg-brand-dark text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center space-x-3 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none z-50 border border-brand-gold/30"
-    >
-      <div
-        class="w-8 h-8 rounded-full bg-brand-gold flex items-center justify-center text-white text-xs shrink-0"
-      >
-        <i class="fa-solid fa-check"></i>
-      </div>
-      <div>
-        <p class="text-sm font-semibold text-white" id="toast-title">
-          Producto añadido
-        </p>
-        <p class="text-xs text-gray-300" id="toast-subtitle">
-          Se ha agregado a tu carrito
-        </p>
-      </div>
+    <div id="toast" class="fixed bottom-6 right-6 bg-brand-dark text-white px-5 py-3 rounded-2xl shadow-xl flex items-center space-x-3 transform translate-y-24 opacity-0 transition-all z-50">
+      <i class="fa-solid fa-check text-brand-gold"></i>
+      <span text-xs id="toast-title">Producto añadido al carrito</span>
     </div>
 
-    <script>
-      const productsData = [
-        {
-          id: 1,
-          title: "Torta de Chocolate Artesanal",
-          category: "Tortas",
-          tag: "TORTAS",
-          price: "$12.50",
-          description:
-            "Exquisito bizcocho de cacao fino de aroma, bañado en ganache artesanal de chocolate amargo al 70%.",
-          image:
-            "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=800",
-        },
-        {
-          id: 2,
-          title: "Red Velvet Elegante",
-          category: "Tortas",
-          tag: "TORTAS",
-          price: "$14.00",
-          description:
-            "Suave terciopelo rojo horneado a baja temperatura con suave crema de queso mascarpone.",
-          image:
-            "https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?auto=format&fit=crop&q=80&w=800",
-        },
-        {
-          id: 3,
-          title: "Torta de Fresas y Crema",
-          category: "Tortas",
-          tag: "TORTAS",
-          price: "$13.50",
-          description:
-            "Bizcochuelo esponjoso intercalado con crema batida fresca y fresas silvestres.",
-          image:
-            "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&q=80&w=800",
-        },
-        {
-          id: 4,
-          title: "Pan de Masa Madre",
-          category: "Panes de Molde",
-          tag: "PANES",
-          price: "$8.50",
-          description:
-            "Hogaza rústica elaborada con fermentación lenta de 36 horas.",
-          image:
-            "https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?auto=format&fit=crop&q=80&w=800",
-        },
-        {
-          id: 5,
-          title: "Pan Integral con Semillas",
-          category: "Panes de Molde",
-          tag: "PANES",
-          price: "$7.00",
-          description:
-            "Harinas integrales de grano entero cubiertas de semillas variadas.",
-          image:
-            "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800",
-        },
-        {
-          id: 6,
-          title: "Pan Brioche",
-          category: "Panes de Molde",
-          tag: "PANES",
-          price: "$9.00",
-          description:
-            "Miga ultra suave enriquecida con mantequilla de Bretaña.",
-          image:
-            "https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&q=80&w=800",
-        },
-        {
-          id: 7,
-          title: "Croissant Francés Clásico",
-          category: "Panecillos",
-          tag: "PANECILLOS",
-          price: "$4.50",
-          description:
-            "Masa hojaldrada tradicional en capas perfectas con mantequilla.",
-          image:
-            "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=800",
-        },
-        {
-          id: 8,
-          title: "Pain au Chocolat",
-          category: "Panecillos",
-          tag: "PANECILLOS",
-          price: "$5.00",
-          description:
-            "Masa hojaldrada rellena con chocolate negro francés al 60%.",
-          image:
-            "https://images.unsplash.com/photo-1623334044303-241021148842?auto=format&fit=crop&q=80&w=800",
-        },
-        {
-          id: 9,
-          title: "Rollo de Canela",
-          category: "Panecillos",
-          tag: "PANECILLOS",
-          price: "$4.50",
-          description:
-            "Esponjoso rollo especiado con canela y glaseado artesanal.",
-          image:
-            "https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&fit=crop&q=80&w=800",
-        },
+    <footer class="bg-brand-footer text-white py-6 text-center text-xs text-gray-400 mt-auto">
+      <p>© 2026 La Miga Dorada. Todos los derechos reservados.</p>
+    </footer>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "TU_API_KEY",
+        authDomain: "tu-proyecto.firebaseapp.com",
+        projectId: "tu-proyecto",
+        storageBucket: "tu-proyecto.appspot.com",
+        messagingSenderId: "123456789",
+        appId: "1:123456789:web:abcdef"
+      };
+
+      let productsData = [
+        { id: "1", title: "Tarta de Fresa & Crema", price: 24.50, category: "Tortas", image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&q=80&w=600", tag: "Destacado", description: "Bizcocho esponjoso con fresas frescas de estación." },
+        { id: "2", title: "Babka de Cacao & Avellanas", price: 18.00, category: "Panes de Molde", image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=600", tag: "Bestseller", description: "Pan artesanal trenzado con rico chocolate oscuro." },
+        { id: "3", title: "Croissant de Almendras", price: 6.50, category: "Panecillos", image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=600", tag: "Clásico", description: "Hojaldre de mantequilla relleno de crema de almendras." }
       ];
 
-      let cartItemCount = 3;
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-      function renderProductsGrid(category = "Todos") {
+      function updateCartCount() {
+        const total = cart.reduce((acc, item) => acc + item.quantity, 0);
+        document.getElementById("cart-count").textContent = total;
+      }
+
+      async function loadProducts() {
+        try {
+          const app = initializeApp(firebaseConfig);
+          const db = getFirestore(app);
+          const snapshot = await getDocs(collection(db, "productos"));
+          if (!snapshot.empty) {
+            productsData = [];
+            snapshot.forEach(doc => productsData.push({ id: doc.id, ...doc.data() }));
+          }
+        } catch(e) {
+          console.warn("Usando catálogo local de contingencia.");
+        }
+        renderProducts("Todos");
+      }
+
+      window.renderProducts = function(category) {
         const grid = document.getElementById("product-grid");
         grid.innerHTML = "";
+        const list = category === "Todos" ? productsData : productsData.filter(p => p.category === category);
+        document.getElementById("visible-count").textContent = list.length;
 
-        const filteredList =
-          category === "Todos"
-            ? productsData
-            : productsData.filter((p) => p.category === category);
-
-        document.getElementById("visible-count").textContent =
-          filteredList.length;
-
-        filteredList.forEach((product) => {
-          const card = document.createElement("article");
-          card.className =
-            "bg-white rounded-3xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between border border-gray-100/90 group";
-
-          card.innerHTML = `
-          <div>
-            <div class="relative h-64 overflow-hidden bg-gray-100">
-              <img src="${product.image}" alt="${product.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-              <span class="absolute top-4 left-4 bg-white/95 backdrop-blur-md text-brand-gold text-[10px] font-bold tracking-wider px-3.5 py-1.5 rounded-full uppercase shadow-xs">${product.tag}</span>
+        list.forEach(p => {
+          grid.innerHTML += `
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xs border border-gray-100 flex flex-col justify-between p-5">
+              <img src="${p.image}" class="w-full h-48 object-cover rounded-2xl mb-4">
+              <h3 class="font-serif font-semibold text-lg">${p.title}</h3>
+              <p class="text-xs text-brand-muted mb-4">${p.description}</p>
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-lg">S/ ${parseFloat(p.price).toFixed(2)}</span>
+                <button onclick="addToCart('${p.id}')" class="bg-brand-dark text-white text-xs px-4 py-2 rounded-full hover:bg-brand-darkHover">Añadir</button>
+              </div>
             </div>
-            <div class="p-6">
-              <h3 class="font-serif text-xl font-normal text-brand-dark mb-2 leading-snug">${product.title}</h3>
-              <p class="text-brand-muted text-xs leading-relaxed font-light">${product.description}</p>
-            </div>
-          </div>
-          <div class="px-6 pb-6 pt-2 flex items-center justify-between">
-            <span class="font-serif text-xl font-medium text-brand-dark">${product.price}</span>
-            <button onclick="addItemToCart('${product.title.replace(/'/g, "\\'")}')" class="bg-brand-dark hover:bg-brand-darkHover text-white px-5 py-2.5 rounded-full text-xs font-medium transition-all duration-200 active:scale-95 shadow-xs">
-              Añadir al Carrito
-            </button>
-          </div>
-        `;
-          grid.appendChild(card);
+          `;
         });
       }
 
-      function filterCategory(categoryName) {
-        const buttons = document.querySelectorAll(".filter-btn");
-        buttons.forEach((btn) => {
-          if (btn.innerText.trim() === categoryName) {
-            btn.classList.replace("bg-white", "bg-brand-dark");
-            btn.classList.replace("text-brand-dark", "text-white");
-          } else {
-            btn.classList.replace("bg-brand-dark", "bg-white");
-            btn.classList.replace("text-white", "text-brand-dark");
-          }
+      window.filterCategory = function(cat, btn) {
+        document.querySelectorAll('.filter-btn').forEach(b => {
+          b.className = "filter-btn bg-white border border-gray-200 px-5 py-2 rounded-full text-sm font-medium";
         });
-        renderProductsGrid(categoryName);
+        btn.className = "filter-btn active bg-brand-dark text-white px-5 py-2 rounded-full text-sm font-medium";
+        renderProducts(cat);
       }
 
-      function addItemToCart(itemTitle) {
-        cartItemCount++;
-        document.getElementById("cart-count").textContent = cartItemCount;
+      window.addToCart = function(id) {
+        const product = productsData.find(p => p.id === id);
+        if (!product) return;
+        const index = cart.findIndex(item => item.id === id);
+        if (index > -1) {
+          cart[index].quantity += 1;
+        } else {
+          cart.push({ ...product, quantity: 1 });
+        }
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartCount();
 
         const toast = document.getElementById("toast");
-        document.getElementById("toast-title").textContent = itemTitle;
-
         toast.classList.remove("translate-y-24", "opacity-0");
-        toast.classList.add("translate-y-0", "opacity-100");
-
-        setTimeout(() => {
-          toast.classList.remove("translate-y-0", "opacity-100");
-          toast.classList.add("translate-y-24", "opacity-0");
-        }, 2500);
+        setTimeout(() => toast.classList.add("translate-y-24", "opacity-0"), 2000);
       }
 
-      function toggleMobileMenu() {
-        document.getElementById("mobile-menu").classList.toggle("hidden");
-      }
-
-      window.addEventListener("DOMContentLoaded", () => {
-        renderProductsGrid("Todos");
+      document.addEventListener("DOMContentLoaded", () => {
+        updateCartCount();
+        loadProducts();
       });
     </script>
   </body>
