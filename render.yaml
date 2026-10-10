@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: la-miga-dorada
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/products
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      # Pega aquí (en el panel de Render) el contenido COMPLETO del JSON de la cuenta de servicio de Firebase.
+      - key: FIREBASE_SERVICE_ACCOUNT
+        sync: false

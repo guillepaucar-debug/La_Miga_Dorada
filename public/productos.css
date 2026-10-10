@@ -1,0 +1,10 @@
+/* Página de productos: oculta la barra de scroll del filtro de categorías */
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

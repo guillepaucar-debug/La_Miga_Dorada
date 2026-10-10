@@ -1,0 +1,27 @@
+/* Páginas de autenticación: login, registro, recuperar contraseña y perfil */
+
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.auth-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 56rem;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+@media (min-width: 768px) {
+    .auth-card {
+        grid-template-columns: 1fr 1fr;
+    }
+}

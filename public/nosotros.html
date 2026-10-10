@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros - La Miga Dorada</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/tailwind-config.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="hero.css">
+    <link rel="stylesheet" href="nosotros.css">
+</head>
+
+<body class="bg-brand-cream text-brand-dark min-h-screen flex flex-col selection:bg-brand-gold selection:text-white">
+
+    <header
+        class="sticky top-0 z-40 bg-brand-cream/95 backdrop-blur-md border-b border-brand-gold/15 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+
+            <a href="index.html" class="flex items-center space-x-3 group">
+                <div
+                    class="w-11 h-11 rounded-full bg-[#FAF3EA] border border-brand-gold/30 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-300">
+                    <span class="font-serif text-xl font-bold text-brand-gold">M</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif text-lg leading-tight font-bold tracking-wide text-brand-dark">La Miga
+                        Dorada</span>
+                    <span class="text-[9px] tracking-[0.2em] font-semibold text-brand-gold uppercase">PANADERÍA
+                        BOUTIQUE</span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center space-x-9 text-sm font-medium">
+                <a href="index.html" class="text-brand-muted hover:text-brand-dark transition-colors">Inicio</a>
+                <a href="productos.html" class="text-brand-muted hover:text-brand-dark transition-colors">Productos</a>
+                <a href="nosotros.html" class="text-brand-dark font-semibold relative py-1">
+                    Nosotros
+                    <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-[2px] bg-brand-gold rounded-full"></span>
+                </a>
+                <a href="#" class="text-brand-muted hover:text-brand-dark transition-colors">Contacto</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <!-- Cart Button -->
+                <button id="cart-btn" onclick="openCartModal()"
+                    class="flex items-center space-x-2.5 bg-[#FAF3EA] hover:bg-brand-gold/15 text-brand-dark px-4 py-2 rounded-full border border-brand-gold/20 transition-all duration-300 active:scale-95 shadow-xs">
+                    <i class="fa-solid fa-bag-shopping text-brand-dark text-sm"></i>
+                    <span id="cart-count"
+                        class="text-xs font-bold bg-brand-dark text-white rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                </button>
+
+                <!-- Divider -->
+                <div class="hidden sm:block h-6 w-[1px] bg-brand-gold/20"></div>
+
+                <div class="relative hidden sm:block">
+                    <!-- State: Logged In -->
+                    <div id="user-logged-in" style="visibility:hidden"
+                        class="flex items-center space-x-2.5 cursor-pointer group hover:opacity-80 transition-opacity"
+                        onclick="toggleUserDropdown()">
+                        <img id="user-avatar"
+                            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120"
+                            alt="Usuario" class="w-9 h-9 rounded-full object-cover ring-2 ring-brand-gold/30">
+                        <span id="user-display-name" class="text-sm font-medium text-brand-dark"></span>
+                        <i
+                            class="fa-solid fa-chevron-down text-xs text-brand-muted group-hover:text-brand-dark transition-colors"></i>
+                    </div>
+
+                    <button id="user-logged-out" style="visibility:hidden" onclick="openAuthModal('login')"
+                        class="hidden flex items-center space-x-2 bg-brand-dark hover:bg-brand-darkHover text-white px-4 py-2 rounded-full text-xs font-medium transition-all">
+                        <i class="fa-regular fa-user"></i>
+                        <span>Iniciar Sesión</span>
+                    </button>
+
+                    <div id="user-dropdown"
+                        class="hidden absolute right-0 mt-2 w-52 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50">
+                        <div class="px-4 py-2 border-b border-gray-100">
+                            <p class="text-[10px] uppercase font-bold text-brand-gold">Sesión Iniciada</p>
+                            <p id="dropdown-user-email" class="text-xs font-medium text-brand-dark truncate">
+                                sofia@ejemplo.com</p>
+                        </div>
+                        <button onclick="openAuthModal('edit-profile')"
+                            class="w-full text-left px-4 py-2 text-xs text-brand-dark hover:bg-gray-50 flex items-center space-x-2 transition-colors">
+                            <i class="fa-solid fa-user-pen text-brand-gold"></i>
+                            <span>Editar perfil</span>
+                        </button>
+                        <button onclick="logoutUser()"
+                            class="w-full text-left px-4 py-2 text-xs text-red-600 hover:bg-red-50 flex items-center space-x-2 transition-colors border-t border-gray-50">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span>Cerrar sesión</span>
+                        </button>
+                    </div>
+                </div>
+
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()"
+                    class="md:hidden text-brand-dark p-2 rounded-lg hover:bg-brand-gold/10">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden border-b border-brand-gold/10 bg-brand-cream px-6 py-4 space-y-3">
+            <a href="index.html" class="block text-brand-muted hover:text-brand-dark py-1">Inicio</a>
+            <a href="productos.html" class="block text-brand-muted hover:text-brand-dark py-1">Productos</a>
+            <a href="nosotros.html" class="block text-brand-dark font-semibold py-1">Nosotros</a>
+            <a href="#" class="block text-brand-muted hover:text-brand-dark py-1">Contacto</a>
+
+
+
+            <div id="mobile-user-section" class="pt-3 border-t border-brand-gold/10">
+                <!-- Rendered by Javascript -->
+            </div>
+        </div>
+    </header>
+    <main class="flex-grow">
+        <section class="about-hero">
+            <img src="img/nosotros-hero.jpg" alt="Panadero espolvoreando harina sobre un pan artesanal" class="about-hero-img">
+            <div class="about-hero-shade"></div>
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div class="about-hero-content">
+                    <div class="about-eyebrow"><i></i><span>Nosotros</span><i></i></div>
+                    <h1 class="font-serif about-title">Nuestra historia <span class="about-title-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M24 44V20"/><path d="M24 20c-5 0-8-4-8-9 5 0 8 4 8 9zM24 20c5 0 8-4 8-9-5 0-8 4-8 9zM24 30c-5 0-8-4-8-9 5 0 8 4 8 9zM24 30c5 0 8-4 8-9-5 0-8 4-8 9zM24 40c-5 0-8-4-8-9 5 0 8 4 8 9zM24 40c5 0 8-4 8-9-5 0-8 4-8 9z"/></svg></span></h1>
+                    <p class="font-serif about-subtitle">Hecho con dedicación,<br>horneado con pasión.</p>
+                    <p class="about-lead">En La Miga Dorada creemos que un buen pan no solo alimenta, también crea momentos. Nacimos con la idea de ofrecer panes y repostería artesanal elaborados con ingredientes seleccionados, recetas tradicionales y mucho cuidado en cada detalle.</p>
+                    <a href="productos.html" class="about-btn">Conoce nuestros productos <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <svg class="about-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,30 C220,80 440,78 700,46 C960,14 1180,40 1440,74 L1440,90 L0,90 Z" fill="#FAF8F5"/></svg>
+        </section>
+
+        <section class="about-values">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="about-head">
+                    <span class="about-head-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M24 44V20"/><path d="M24 20c-5 0-8-4-8-9 5 0 8 4 8 9zM24 20c5 0 8-4 8-9-5 0-8 4-8 9zM24 30c-5 0-8-4-8-9 5 0 8 4 8 9zM24 30c5 0 8-4 8-9-5 0-8 4-8 9zM24 40c-5 0-8-4-8-9 5 0 8 4 8 9zM24 40c5 0 8-4 8-9-5 0-8 4-8 9z"/></svg></span>
+                    <h2 class="font-serif"><i></i>Lo que nos representa<i></i></h2>
+                    <p>Valores que hornean cada día</p>
+                </div>
+                <div class="about-values-grid">
+                <div class="about-value"><span class="about-value-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M8 40C8 20 20 8 42 6c0 22-12 34-30 34"/><path d="M8 40 30 18M22 30l8 1M16 36l2-8"/></svg></span><h3 class="font-serif">Ingredientes naturales</h3><p>Seleccionamos ingredientes de calidad para ofrecer productos frescos y deliciosos.</p></div>
+                <div class="about-value"><span class="about-value-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M14 36v-8a7 7 0 0 1 2-13 8 8 0 0 1 16 0 7 7 0 0 1 2 13v8z"/><path d="M14 36h20v4a2 2 0 0 1-2 2H16a2 2 0 0 1-2-2zM20 26v6M28 26v6"/></svg></span><h3 class="font-serif">Elaboración artesanal</h3><p>Cuidamos cada preparación para conservar el sabor y la esencia de nuestros productos.</p></div>
+                <div class="about-value"><span class="about-value-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M24 41S6 30 6 17a9 9 0 0 1 18-3 9 9 0 0 1 18 3c0 13-18 24-18 24z"/></svg></span><h3 class="font-serif">Hecho para compartir</h3><p>Creamos productos pensados para acompañar desayunos, reuniones y momentos especiales.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-essence">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="about-essence-grid">
+                    <div class="about-mosaic">
+                        <img src="img/nosotros-cesta.jpg" alt="Cesta con panes artesanales y espigas de trigo" class="about-mosaic-main" loading="lazy">
+                        <img src="img/nosotros-croissants.jpg" alt="Croissants recién horneados" class="about-mosaic-a" loading="lazy">
+                        <img src="img/nosotros-masa.jpg" alt="Manos amasando" class="about-mosaic-b" loading="lazy">
+                    </div>
+                    <div class="about-essence-text">
+                        <div class="about-eyebrow about-eyebrow-sm"><i></i><span>Nuestra esencia</span><i></i></div>
+                        <h2 class="font-serif">Más que una panadería,<br><em>somos parte de tus momentos.</em></h2>
+                        <p>La Miga Dorada es una panadería boutique que nace del amor por lo artesanal y lo natural. Nuestro compromiso es llevar a tu mesa productos frescos, de alta calidad y con el inconfundible sabor de siempre.</p>
+                        <p>Nos motiva ver cómo nuestros productos forman parte de tus desayunos, celebraciones y pequeños grandes momentos de la vida.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-banner">
+            <img src="img/hero-pan.jpg" alt="" class="about-banner-img" loading="lazy">
+            <div class="about-banner-shade"></div>
+            <div class="relative text-center px-4">
+                <div class="about-banner-top"><i></i><span><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M24 44V20"/><path d="M24 20c-5 0-8-4-8-9 5 0 8 4 8 9zM24 20c5 0 8-4 8-9-5 0-8 4-8 9zM24 30c-5 0-8-4-8-9 5 0 8 4 8 9zM24 30c5 0 8-4 8-9-5 0-8 4-8 9zM24 40c-5 0-8-4-8-9 5 0 8 4 8 9zM24 40c5 0 8-4 8-9-5 0-8 4-8 9z"/></svg></span><i></i></div>
+                <h2 class="font-serif">El sabor de lo hecho en casa</h2>
+                <p class="font-serif about-quote">“Cada pan tiene una historia.<br>La nuestra comienza contigo.”</p>
+                <span class="about-banner-line"></span>
+            </div>
+        </section>
+    </main>
+
+    <footer class="about-footer">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="about-footer-top">
+                <a href="index.html" class="about-footer-brand">
+                    <span class="about-footer-logo font-serif">M</span>
+                    <span><b class="font-serif">La Miga Dorada</b><small>PANADERÍA BOUTIQUE</small></span>
+                </a>
+                <div class="about-foot-item"><span class="about-foot-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M8 40C8 20 20 8 42 6c0 22-12 34-30 34"/><path d="M8 40 30 18M22 30l8 1M16 36l2-8"/></svg></span><div><p>Ingredientes Naturales</p><small>Sin conservantes ni aditivos.</small></div></div>
+                <div class="about-foot-item"><span class="about-foot-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M14 36v-8a7 7 0 0 1 2-13 8 8 0 0 1 16 0 7 7 0 0 1 2 13v8z"/><path d="M14 36h20v4a2 2 0 0 1-2 2H16a2 2 0 0 1-2-2zM20 26v6M28 26v6"/></svg></span><div><p>Horneado Diario</p><small>Siempre fresco y delicioso.</small></div></div>
+                <div class="about-foot-item"><span class="about-foot-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M24 5 8 11v12c0 10 7 17 16 20 9-3 16-10 16-20V11z"/><path d="m17 24 5 5 9-10"/></svg></span><div><p>Calidad Garantizada</p><small>El mejor sabor, siempre.</small></div></div>
+                <div class="about-foot-item"><span class="about-foot-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full"><path d="M4 12h24v22H4zM28 18h9l7 8v8H28z"/><circle cx="14" cy="36" r="4"/><circle cx="36" cy="36" r="4"/><path d="M9 18h14M9 24h14"/></svg></span><div><p>Pedidos y Entregas</p><small>Recibe tu pedido en la comodidad de tu hogar.</small></div></div>
+            </div>
+            <div class="about-footer-bottom">
+                <p>© <span id="year">2026</span> La Miga Dorada. Todos los derechos reservados.</p>
+                <div class="about-social">
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cart-modal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm p-4 items-center justify-center">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-hidden">
+            <div class="p-6 border-b border-gray-100 flex items-center justify-between">
+                <div>
+                    <h2 id="cart-title" class="font-serif text-2xl text-brand-dark">Tu carrito</h2>
+                    <p id="cart-subtitle" class="text-xs text-brand-muted">Tus productos se guardan en tu cuenta.</p>
+                </div>
+                <button onclick="closeCartModal()" aria-label="Cerrar"
+                    class="w-9 h-9 rounded-full bg-gray-100 text-gray-500 hover:text-brand-dark">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Vista 1: carrito -->
+            <div id="cart-view-cart">
+                <div id="cart-items-list" class="px-6 overflow-y-auto max-h-[55vh]"></div>
+                <div class="p-6 border-t border-gray-100">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm text-brand-muted">Total</span>
+                        <span id="cart-total" class="font-serif text-2xl text-brand-dark">$0.00</span>
+                    </div>
+                    <button id="cart-confirm-btn" onclick="startCheckout()"
+                        class="w-full bg-brand-dark hover:bg-brand-darkHover text-white py-3 rounded-xl text-xs font-medium disabled:opacity-50 disabled:cursor-not-allowed">
+                        Confirmar pedido
+                    </button>
+                </div>
+            </div>
+
+            <!-- Vista 2: datos de entrega -->
+            <form id="cart-view-checkout" style="display:none" onsubmit="submitOrder(event)" novalidate>
+                <div class="px-6 py-5 overflow-y-auto max-h-[58vh] space-y-4">
+                    <div id="checkout-summary" class="bg-brand-cream rounded-2xl p-4 text-xs"></div>
+
+                    <div>
+                        <label for="co-address" class="block text-xs font-semibold text-brand-dark mb-1.5">Dirección de entrega</label>
+                        <input id="co-address" type="text" maxlength="200" autocomplete="street-address" placeholder="Calle, número, referencia" class="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-brand-dark bg-white focus:outline-none focus:ring-2 focus:ring-brand-gold/40 focus:border-brand-gold">
+                    </div>
+                    <div>
+                        <label for="co-phone" class="block text-xs font-semibold text-brand-dark mb-1.5">Teléfono de contacto</label>
+                        <input id="co-phone" type="tel" maxlength="20" autocomplete="tel" placeholder="Ej. 987 654 321" class="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-brand-dark bg-white focus:outline-none focus:ring-2 focus:ring-brand-gold/40 focus:border-brand-gold">
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label for="co-date" class="block text-xs font-semibold text-brand-dark mb-1.5">Fecha de entrega</label>
+                            <input id="co-date" type="date" onchange="refreshDeliveryTimes()" class="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-brand-dark bg-white focus:outline-none focus:ring-2 focus:ring-brand-gold/40 focus:border-brand-gold">
+                        </div>
+                        <div>
+                            <label for="co-time" class="block text-xs font-semibold text-brand-dark mb-1.5">Hora de entrega</label>
+                            <select id="co-time" class="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-brand-dark bg-white focus:outline-none focus:ring-2 focus:ring-brand-gold/40 focus:border-brand-gold"></select>
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-brand-muted -mt-2">Horarios de entrega: lunes a sábado de 8:00 a 20:00 · domingo de 9:00 a 15:00.</p>
+                    <div>
+                        <label for="co-notes" class="block text-xs font-semibold text-brand-dark mb-1.5">Notas (opcional)</label>
+                        <textarea id="co-notes" rows="2" maxlength="300" placeholder="Dedicatoria, alergias, indicaciones..." class="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-brand-dark bg-white focus:outline-none focus:ring-2 focus:ring-brand-gold/40 focus:border-brand-gold resize-none"></textarea>
+                    </div>
+                    <p id="checkout-error" class="hidden text-xs text-red-600 bg-red-50 rounded-xl px-3 py-2"></p>
+                </div>
+                <div class="p-6 border-t border-gray-100">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm text-brand-muted">Total</span>
+                        <span id="checkout-total" class="font-serif text-2xl text-brand-dark">$0.00</span>
+                    </div>
+                    <div class="flex gap-3">
+                        <button type="button" onclick="backToCart()"
+                            class="flex-1 bg-gray-100 hover:bg-gray-200 text-brand-dark py-3 rounded-xl text-xs font-medium">Volver</button>
+                        <button id="checkout-submit" type="submit"
+                            class="flex-[2] bg-brand-dark hover:bg-brand-darkHover text-white py-3 rounded-xl text-xs font-medium disabled:opacity-60 disabled:cursor-wait">Realizar pedido</button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Vista 3: pedido confirmado -->
+            <div id="cart-view-success" style="display:none" class="p-8 text-center"></div>
+        </div>
+    </div>
+
+    <div id="toast"
+        class="fixed bottom-6 right-6 bg-brand-dark text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center space-x-3 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none z-50 border border-brand-gold/30">
+        <div class="w-8 h-8 rounded-full bg-brand-gold flex items-center justify-center text-white text-xs shrink-0">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div>
+            <p class="text-sm font-semibold text-white" id="toast-title">Notificación</p>
+            <p class="text-xs text-gray-300" id="toast-subtitle">Mensaje</p>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+
+</html>
