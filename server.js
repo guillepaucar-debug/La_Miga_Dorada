@@ -1,9 +1,13 @@
 const path = require('path');
 const express = require('express');
+const cors = require('cors'); // <--- 1. Agregar esta línea
 const { PORT, PUBLIC_DIR } = require('./src/config');
 const { initDb } = require('./src/database/init');
 
 const app = express();
+
+// Habilitar CORS para permitir peticiones desde Live Server o cualquier puerto local
+app.use(cors()); // <--- 2. Agregar esta línea
 
 // El avatar del perfil viaja como imagen en base64, por eso el límite alto.
 app.use(express.json({ limit: '5mb' }));
