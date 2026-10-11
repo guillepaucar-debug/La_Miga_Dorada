@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar contraseña - La Miga Dorada</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/tailwind-config.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="auth.css">
+</head>
+
+<body data-view="reset" class="auth-page bg-brand-cream text-brand-dark">
+
+    <main class="auth-card">
+        <a href="index.html" aria-label="Cerrar"
+            class="absolute top-4 right-4 z-10 text-gray-400 hover:text-brand-dark bg-white/80 w-8 h-8 rounded-full flex items-center justify-center transition-colors">
+            <i class="fa-solid fa-xmark"></i>
+        </a>
+        <div class="relative hidden md:block bg-gray-100 min-h-[500px]">
+            <img id="auth-image" src="https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?auto=format&fit=crop&q=80&w=800"
+                alt="Panadería" class="w-full h-full object-cover">
+        </div>
+        <div class="p-8 sm:p-10 flex flex-col justify-center bg-white">
+            <div id="reset-form-container">
+                    <h2 class="font-serif text-2xl text-brand-dark mb-2">Restablece tu contraseña</h2>
+                    <p class="text-xs text-brand-muted mb-5">Ingresa tu correo registrado y asigna una nueva contraseña.
+                    </p>
+
+                    <form onsubmit="handleResetPassword(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-brand-dark mb-1">Correo electrónico
+                                registrado</label>
+                            <input type="email" id="reset-email" required placeholder="tu-correo@ejemplo.com"
+                                class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-xs focus:outline-none focus:border-brand-gold transition-colors">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-brand-dark mb-1">Nueva contraseña</label>
+                            <div class="relative">
+                                <input type="password" id="reset-new-password" required
+                                    placeholder="Escribe tu nueva contraseña"
+                                    class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-xs focus:outline-none focus:border-brand-gold transition-colors pr-10">
+                                <button type="button"
+                                    onclick="togglePasswordVisibility('reset-new-password', 'eye-reset')"
+                                    class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs">
+                                    <i id="eye-reset" class="fa-regular fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <p id="reset-error" class="text-xs text-red-500 hidden"></p>
+
+                        <button type="submit"
+                            class="w-full bg-[#382823] hover:bg-brand-dark text-white py-3 rounded-xl text-xs font-medium transition-colors shadow-sm">
+                            Guardar nueva contraseña
+                        </button>
+
+                        <div class="text-center pt-2">
+                            <button type="button" onclick="switchAuthView('login')"
+                                class="text-xs text-brand-dark underline hover:text-brand-gold">
+                                Volver a Iniciar sesión
+                            </button>
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </main>
+
+    <div id="toast"
+        class="fixed bottom-6 right-6 bg-brand-dark text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center space-x-3 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none z-50 border border-brand-gold/30">
+        <div class="w-8 h-8 rounded-full bg-brand-gold flex items-center justify-center text-white text-xs shrink-0">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div>
+            <p class="text-sm font-semibold text-white" id="toast-title">Notificación</p>
+            <p class="text-xs text-gray-300" id="toast-subtitle">Mensaje</p>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "la-miga-dorada",
+  "version": "1.0.0",
+  "description": "Panadería boutique La Miga Dorada",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "migrate": "node scripts/migrate-sqlite-to-firebase.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.19.2",
+    "firebase-admin": "^13.0.0",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

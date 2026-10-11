@@ -1,0 +1,27 @@
+/* Estilos generales de todo el sitio */
+
+body {
+    background-color: #FAF8F5;
+    color: #2D211E;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.font-serif {
+    font-family: 'Playfair Display', serif;
+}
+
+/* ===== Cambio de página suave (sin pantalla en blanco) ===== */
+/* El navegador mezcla la página anterior con la nueva; no hay hueco vacío entre ambas. */
+@view-transition { navigation: auto; }
+
+html { scroll-behavior: smooth; }
+
+header { view-transition-name: site-header; } /* la cabecera no se mueve */
+
+::view-transition-old(root),
+::view-transition-new(root) { animation-duration: .22s; }
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+}

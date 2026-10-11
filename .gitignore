@@ -1,0 +1,11 @@
+node_modules/
+.env
+# Claves privadas de Firebase: nunca se suben a GitHub
+firebase-service-account.json
+*-firebase-adminsdk-*.json
+# Base de datos SQLite antigua (tenía cuentas reales)
+data/*.sqlite
+data/*.sqlite-journal
+data/*.db
+*.log
+.DS_Store
