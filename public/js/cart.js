@@ -284,13 +284,20 @@ function renderOrderSuccess(order) {
         <div class="w-16 h-16 rounded-full bg-brand-gold/15 text-brand-gold flex items-center justify-center mx-auto mb-4 text-2xl">
             <i class="fa-solid fa-check"></i>
         </div>
-        <h3 class="font-serif text-2xl text-brand-dark mb-1">¡Tu pedido ha sido realizado con éxito!</h3>
-        <p class="text-sm text-brand-muted mb-5">Te enviaremos los detalles.</p>
+        <h3 class="font-serif text-2xl text-brand-dark mb-1">¡Tu pedido ha sido registrado!</h3>
+        <p class="text-sm text-brand-muted mb-5">Falta un último paso: realiza tu pago para confirmar.</p>
+        
         <div class="bg-brand-cream rounded-2xl p-4 text-left text-xs space-y-1.5 mb-6">
             <p><span class="text-brand-muted">Pedido:</span> <span class="font-semibold text-brand-dark">#${order.id}</span></p>
             <p><span class="text-brand-muted">Entrega:</span> <span class="font-semibold text-brand-dark">${escapeHtml(dateText)}, ${escapeHtml(order.deliveryTime)}</span></p>
             <p><span class="text-brand-muted">Dirección:</span> <span class="font-semibold text-brand-dark">${escapeHtml(order.address)}</span></p>
-            <p><span class="text-brand-muted">Total:</span> <span class="font-semibold text-brand-dark">${formatPrice(order.total)}</span></p>
+            <p><span class="text-brand-muted">Total a pagar:</span> <span class="font-semibold text-brand-dark">${formatPrice(order.total)}</span></p>
         </div>
-        <button onclick="closeCartModal()" class="w-full bg-brand-dark hover:bg-brand-darkHover text-white py-3 rounded-xl text-xs font-medium">Aceptar</button>`;
+
+        <!-- BOTÓN DIRECTO DE MERCADO PAGO -->
+        <a href="https://link.mercadopago.com.pe/lamigadorada" target="_blank" class="w-full bg-[#009EE3] hover:bg-[#0082BD] text-white py-3 rounded-xl text-xs font-medium flex items-center justify-center gap-2 mb-3 transition-colors shadow-sm">
+            <i class="fa-solid fa-credit-card"></i> Pagar ${formatPrice(order.total)} con Mercado Pago / Yape
+        </a>
+
+        <button onclick="closeCartModal()" class="w-full bg-brand-dark hover:bg-brand-darkHover text-white py-3 rounded-xl text-xs font-medium">Ya pagué / Cerrar</button>`;
 }
