@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - La Miga Dorada</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/tailwind-config.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="hero.css">
+    <link rel="stylesheet" href="contacto.css">
+</head>
+
+<body class="bg-brand-cream text-brand-dark min-h-screen flex flex-col selection:bg-brand-gold selection:text-white">
+
+    <header
+        class="sticky top-0 z-40 bg-brand-cream/95 backdrop-blur-md border-b border-brand-gold/15 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+
+            <a href="index.html" class="flex items-center space-x-3 group">
+                <div
+                    class="w-11 h-11 rounded-full bg-[#FAF3EA] border border-brand-gold/30 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-300">
+                    <span class="font-serif text-xl font-bold text-brand-gold">M</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif text-lg leading-tight font-bold tracking-wide text-brand-dark">La Miga
+                        Dorada</span>
+                    <span class="text-[9px] tracking-[0.2em] font-semibold text-brand-gold uppercase">PANADERÍA
+                        BOUTIQUE</span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center space-x-9 text-sm font-medium">
+                <a href="index.html" class="text-brand-muted hover:text-brand-dark transition-colors">Inicio</a>
+                <a href="productos.html" class="text-brand-muted hover:text-brand-dark transition-colors">Productos</a>
+                <a href="nosotros.html" class="text-brand-muted hover:text-brand-dark transition-colors">Nosotros</a>
+                <a href="contacto.html" class="text-brand-dark font-semibold relative py-1">
+                    Contacto
+                    <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-[2px] bg-brand-gold rounded-full"></span>
+                </a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <!-- Cart Button -->
+                <button id="cart-btn" onclick="openCartModal()"
+                    class="flex items-center space-x-2.5 bg-[#FAF3EA] hover:bg-brand-gold/15 text-brand-dark px-4 py-2 rounded-full border border-brand-gold/20 transition-all duration-300 active:scale-95 shadow-xs">
+                    <i class="fa-solid fa-bag-shopping text-brand-dark text-sm"></i>
+                    <span id="cart-count"
+                        class="text-xs font-bold bg-brand-dark text-white rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                </button>
+
+                <!-- Divider -->
+                <div class="hidden sm:block h-6 w-[1px] bg-brand-gold/20"></div>
+
+                <div class="relative hidden sm:block">
+                    <!-- State: Logged In -->
+                    <div id="user-logged-in" style="visibility:hidden"
+                        class="flex items-center space-x-2.5 cursor-pointer group hover:opacity-80 transition-opacity"
+                        onclick="toggleUserDropdown()">
+                        <img id="user-avatar"
+                            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120"
+                            alt="Usuario" class="w-9 h-9 rounded-full object-cover ring-2 ring-brand-gold/30">
+                        <span id="user-display-name" class="text-sm font-medium text-brand-dark"></span>
+                        <i
+                            class="fa-solid fa-chevron-down text-xs text-brand-muted group-hover:text-brand-dark transition-colors"></i>
+                    </div>
+
+                    <button id="user-logged-out" style="visibility:hidden" onclick="openAuthModal('login')"
+                        class="hidden flex items-center space-x-2 bg-brand-dark hover:bg-brand-darkHover text-white px-4 py-2 rounded-full text-xs font-medium transition-all">
+                        <i class="fa-regular fa-user"></i>
+                        <span>Iniciar Sesión</span>
+                    </button>
+
+                    <div id="user-dropdown"
+                        class="hidden absolute right-0 mt-2 w-52 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50">
+                        <div class="px-4 py-2 border-b border-gray-100">
+                            <p class="text-[10px] uppercase font-bold text-brand-gold">Sesión Iniciada</p>
+                            <p id="dropdown-user-email" class="text-xs font-medium text-brand-dark truncate">
+                                sofia@ejemplo.com</p>
+                        </div>
+                        <button onclick="openAuthModal('edit-profile')"
+                            class="w-full text-left px-4 py-2 text-xs text-brand-dark hover:bg-gray-50 flex items-center space-x-2 transition-colors">
+                            <i class="fa-solid fa-user-pen text-brand-gold"></i>
+                            <span>Editar perfil</span>
+                        </button>
+                        <button onclick="logoutUser()"
+                            class="w-full text-left px-4 py-2 text-xs text-red-600 hover:bg-red-50 flex items-center space-x-2 transition-colors border-t border-gray-50">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span>Cerrar sesión</span>
+                        </button>
+                    </div>
+                </div>
+
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()"
+                    class="md:hidden text-brand-dark p-2 rounded-lg hover:bg-brand-gold/10">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden border-b border-brand-gold/10 bg-brand-cream px-6 py-4 space-y-3">
+            <a href="index.html" class="block text-brand-muted hover:text-brand-dark py-1">Inicio</a>
+            <a href="productos.html" class="block text-brand-muted hover:text-brand-dark py-1">Productos</a>
+            <a href="nosotros.html" class="block text-brand-muted hover:text-brand-dark py-1">Nosotros</a>
+            <a href="contacto.html" class="block text-brand-dark font-semibold py-1">Contacto</a>
+
+
+
+            <div id="mobile-user-section" class="pt-3 border-t border-brand-gold/10">
+                <!-- Rendered by Javascript -->
+            </div>
+        </div>
+    </header>
+    <main class="flex-grow">
+        <section class="ct-hero">
+            <div id="hero-slides" class="ct-hero-slides">
+                <img src="img/contacto-hero.jpg" alt="Cesta de mimbre con panes artesanales y espigas de trigo" class="hero-slide is-active">
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=2000" alt="Pan integral con semillas" class="hero-slide">
+                <img src="https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?auto=format&fit=crop&q=80&w=2000" alt="Pan de masa madre" class="hero-slide">
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=2000" alt="Croissants" class="hero-slide">
+                <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&q=80&w=2000" alt="Pan brioche" class="hero-slide">
+                <img src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&fit=crop&q=80&w=2000" alt="Rollos de canela" class="hero-slide">
+            </div>
+            <div class="ct-hero-shade"></div>
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div class="ct-hero-content">
+                    <div class="ct-eyebrow"><i></i><span>Contáctanos</span><i></i></div>
+                    <h1 class="font-serif ct-title">Estamos aquí para <span class="ct-title-icon"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full" aria-hidden="true"><path d="M24 44V20"/><path d="M24 20c-5 0-8-4-8-9 5 0 8 4 8 9zM24 20c5 0 8-4 8-9-5 0-8 4-8 9zM24 30c-5 0-8-4-8-9 5 0 8 4 8 9zM24 30c5 0 8-4 8-9-5 0-8 4-8 9zM24 40c-5 0-8-4-8-9 5 0 8 4 8 9zM24 40c5 0 8-4 8-9-5 0-8 4-8 9z"/></svg></span> atenderte.</h1>
+                    <p class="ct-lead">¿Tienes alguna consulta o deseas realizar un pedido? <br>En La Miga Dorada estaremos encantados de ayudarte <br>y ofrecerte nuestros productos artesanales.</p>
+                </div>
+            </div>
+            <svg class="ct-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0,22 C240,52 480,44 760,30 C1040,16 1260,38 1440,68 L1440,90 L0,90 Z" fill="#FAF8F5"/></svg>
+        </section>
+
+        <section class="ct-main">
+            <div class="ct-wrap">
+                <div class="ct-grid">
+
+                    <div class="ct-card">
+                        <div class="ct-card-head">
+                            <span class="ct-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.2"/><path d="m3.8 7.2 8.2 6.3 8.2-6.3"/></svg></span>
+                            <div>
+                                <h2 class="font-serif">Envíanos un mensaje</h2>
+                                <p>Completa el formulario y te responderemos lo antes posible.</p>
+                            </div>
+                        </div>
+
+                        <form id="contact-form" class="ct-form" novalidate>
+                            <div class="ct-row">
+                                <label class="ct-field">
+                                    <span class="sr-only">Nombre</span>
+                                    <svg class="ct-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20c.6-3.8 3.7-6 7.5-6s6.9 2.2 7.5 6"/></svg>
+                                    <input id="ct-name" name="name" type="text" class="ct-input" placeholder="Nombre" maxlength="80" autocomplete="name" required>
+                                </label>
+                                <label class="ct-field">
+                                    <span class="sr-only">Correo electrónico</span>
+                                    <svg class="ct-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.2"/><path d="m3.8 7.2 8.2 6.3 8.2-6.3"/></svg>
+                                    <input id="ct-email" name="email" type="email" class="ct-input" placeholder="Correo electrónico" maxlength="120" autocomplete="email" required>
+                                </label>
+                            </div>
+
+                            <label class="ct-field">
+                                <span class="sr-only">Asunto</span>
+                                <svg class="ct-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12.2V4.8a1.3 1.3 0 0 1 1.3-1.3h7.4l8.3 8.3a1.3 1.3 0 0 1 0 1.8l-6.6 6.6a1.3 1.3 0 0 1-1.8 0z"/><circle cx="8.3" cy="8.3" r="1.2"/></svg>
+                                <select id="ct-subject" name="subject" class="ct-select" required>
+                                    <option value="" selected disabled>Asunto</option>
+                                    <option value="Consulta general">Consulta general</option>
+                                    <option value="Pedido">Hacer un pedido</option>
+                                    <option value="Pedido personalizado">Pedido personalizado (tortas por encargo)</option>
+                                    <option value="Sugerencia">Sugerencia</option>
+                                    <option value="Reclamo">Reclamo</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                                <svg class="ct-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                            </label>
+
+                            <label class="ct-field ct-field-area">
+                                <span class="sr-only">Mensaje</span>
+                                <svg class="ct-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 12a8 7.2 0 0 1-11.6 6.4L3.5 20l1.6-4.4A7.2 7.2 0 0 1 4 12c0-4 3.6-7.2 8.2-7.2S20.5 8 20.5 12z"/><path d="M8.6 12h.01M12 12h.01M15.4 12h.01" stroke-width="2.2"/></svg>
+                                <textarea id="ct-message" name="message" class="ct-textarea" placeholder="Mensaje" maxlength="1000" required></textarea>
+                            </label>
+
+                            <!-- Campo trampa contra spam (las personas no lo ven) -->
+                            <input type="text" id="ct-website" name="website" class="ct-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+                            <p id="ct-error" class="ct-error" role="alert" hidden></p>
+                            <p id="ct-success" class="ct-success" role="status" hidden></p>
+
+                            <button id="ct-submit" type="submit" class="ct-btn">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>Enviar mensaje</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <aside class="ct-info">
+                        <div class="ct-item">
+                            <a href="https://wa.me/51987654321?text=Hola%2C%20quisiera%20hacer%20una%20consulta%20en%20La%20Miga%20Dorada" target="_blank" rel="noopener" class="ct-item-icon" aria-label="Escribir por WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                            <div class="ct-item-body">
+                                <h3 class="font-serif">Teléfono / WhatsApp</h3>
+                                <a class="ct-link" href="tel:+51987654321">+51 987 654 321</a>
+                                <small>Pedidos y consultas</small>
+                            </div>
+                        </div>
+                        <div class="ct-item">
+                            <a href="mailto:lamigadorada@gmail.com" class="ct-item-icon" aria-label="Enviar un correo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.2"/><path d="m3.8 7.2 8.2 6.3 8.2-6.3"/></svg></a>
+                            <div class="ct-item-body">
+                                <h3 class="font-serif">Correo electrónico</h3>
+                                <a class="ct-link" href="mailto:lamigadorada@gmail.com">lamigadorada@gmail.com</a>
+                                <small>Consultas y pedidos</small>
+                            </div>
+                        </div>
+                        <div class="ct-item">
+                            <a href="https://www.google.com/maps/search/?api=1&query=Av.+Los+Fresnos+123%2C+Lima%2C+Per%C3%BA" target="_blank" rel="noopener" class="ct-item-icon" aria-label="Ver la dirección en el mapa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg></a>
+                            <div class="ct-item-body">
+                                <h3 class="font-serif">Dirección</h3>
+                                <a class="ct-link" href="https://www.google.com/maps/search/?api=1&query=Av.+Los+Fresnos+123%2C+Lima%2C+Per%C3%BA" target="_blank" rel="noopener">Av. Los Fresnos 123, Lima - Perú</a>
+                                <small>Visítanos en nuestra panadería</small>
+                            </div>
+                        </div>
+                        <div class="ct-item">
+                            <span class="ct-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.6"/><path d="M12 7.4V12l3.2 2"/></svg></span>
+                            <div class="ct-item-body">
+                                <h3 class="font-serif">Horario de atención</h3>
+                                <p>Lunes a Sábado: 8:00 a.m. – 8:00 p.m.<br>Domingo: 9:00 a.m. – 3:00 p.m.</p>
+                            </div>
+                        </div>
+
+                        <div class="ct-social">
+                            <div>
+                                <h3 class="font-serif">Síguenos en nuestras redes</h3>
+                                <p>Conoce nuestras novedades, promociones y más.</p>
+                            </div>
+                            <div class="ct-social-links">
+                                <a href="https://wa.me/51987654321" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                                <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                                <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </aside>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="ct-footer">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="ct-footer-top">
+                <a href="index.html" class="ct-footer-brand">
+                    <span class="ct-footer-logo font-serif">M</span>
+                    <span><b class="font-serif">La Miga Dorada</b><small>PANADERÍA BOUTIQUE</small></span>
+                </a>
+                <div class="ct-footer-quote">
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full" aria-hidden="true"><path d="M24 44V20"/><path d="M24 20c-5 0-8-4-8-9 5 0 8 4 8 9zM24 20c5 0 8-4 8-9-5 0-8 4-8 9zM24 30c-5 0-8-4-8-9 5 0 8 4 8 9zM24 30c5 0 8-4 8-9-5 0-8 4-8 9zM24 40c-5 0-8-4-8-9 5 0 8 4 8 9zM24 40c5 0 8-4 8-9-5 0-8 4-8 9z"/></svg>
+                    <p class="font-serif">Pan artesanal,<br>hecho con el corazón.</p>
+                </div>
+                <div class="ct-footer-hours">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.6"/><path d="M12 7.4V12l3.2 2"/></svg>
+                    <div>
+                        <b>Horario de atención</b>
+                        <small>Lunes a Sábado: 8:00 a.m. – 8:00 p.m.</small>
+                        <small>Domingo: 9:00 a.m. – 3:00 p.m.</small>
+                    </div>
+                </div>
+                <div class="ct-footer-social">
+                    <a href="https://wa.me/51987654321" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="ct-footer-bottom">
+                <p>© <span id="year">2026</span> La Miga Dorada. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cart-modal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm p-4 items-center justify-center">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-hidden">
+            <div class="p-6 border-b border-gray-100 flex items-center justify-between">
+                <div>
+                    <h2 id="cart-title" class="font-serif text-2xl text-brand-dark">Tu carrito</h2>
+                    <p id="cart-subtitle" class="text-xs text-brand-muted">Tus productos se guardan en tu cuenta.</p>
+                </div>
+                <button onclick="closeCartModal()" aria-label="Cerrar"
+                    class="w-9 h-9 rounded-full bg-gray-100 text-gray-500 hover:text-brand-dark">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Vista 1: carrito -->
+            <div id="cart-view-cart">
+                <div id="cart-items-list" class="px-6 overflow-y-auto max-h-[55vh]"></div>
+                <div class="p-6 border-t border-gray-100">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm text-brand-muted">Total</span>
+                        <span id="cart-total" class="font-serif text-2xl text-brand-dark">$0.00</span>
+                    </div>
+                    <button id="cart-confirm-btn" onclick="startCheckout()"
+                        class="w-full bg-brand-dark hover:bg-brand-darkHover text-white py-3 rounded-xl text-xs font-medium disabled:opacity-50 disabled:cursor-not-allowed">
+                        Confirmar pedido
+                    </button>
+                </div>
+            </div>
+
+            <!-- Vista 2: datos de entrega -->
+            <form id="cart-view-checkout" style="display:none" onsubmit="submitOrder(event)" novalidate>
+                <div class="px-6 py-5 overflow-y-auto max-h-[58vh] space-y-4">
+                    <div id="checkout-summary" class="bg-brand-cream rounded-2xl p-4 text-xs"></div>
+
+                    <div>
+                        <label for="co-address" class="block text-xs font-semibold text-brand-dark mb-1.5">Dirección de entrega</label>
+                        <input id="co-address" type="text" maxlength="200" autocomplete="street-address" placeholder="Calle, número, referencia" class="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-brand-dark bg-white focus:outline-none focus:ring-2 focus:ring-brand-gold/40 focus:border-brand-gold">
+                    </div>
+                    <div>
+                        <label for="co-phone" class="block text-xs font-semibold text-brand-dark mb-1.5">Teléfono de contacto</label>
+                        <input id="co-phone" type="tel" maxlength="20" autocomplete="tel" placeholder="Ej. 987 654 321" class="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-brand-dark bg-white focus:outline-none focus:ring-2 focus:ring-brand-gold/40 focus:border-brand-gold">
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label for="co-date" class="block text-xs font-semibold text-brand-dark mb-1.5">Fecha de entrega</label>
+                            <input id="co-date" type="date" onchange="refreshDeliveryTimes()" class="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-brand-dark bg-white focus:outline-none focus:ring-2 focus:ring-brand-gold/40 focus:border-brand-gold">
+                        </div>
+                        <div>
+                            <label for="co-time" class="block text-xs font-semibold text-brand-dark mb-1.5">Hora de entrega</label>
+                            <select id="co-time" class="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-brand-dark bg-white focus:outline-none focus:ring-2 focus:ring-brand-gold/40 focus:border-brand-gold"></select>
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-brand-muted -mt-2">Horarios de entrega: lunes a sábado de 8:00 a 20:00 · domingo de 9:00 a 15:00.</p>
+                    <div>
+                        <label for="co-notes" class="block text-xs font-semibold text-brand-dark mb-1.5">Notas (opcional)</label>
+                        <textarea id="co-notes" rows="2" maxlength="300" placeholder="Dedicatoria, alergias, indicaciones..." class="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-brand-dark bg-white focus:outline-none focus:ring-2 focus:ring-brand-gold/40 focus:border-brand-gold resize-none"></textarea>
+                    </div>
+                    <div>
+                        <p class="block text-xs font-semibold text-brand-dark mb-1.5">Método de pago</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-3 border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-brand-dark bg-white cursor-pointer has-[:checked]:border-brand-gold has-[:checked]:bg-brand-cream">
+                                <input type="radio" name="co-payment" value="efectivo" checked class="accent-brand-gold">
+                                <span class="flex-1">Efectivo contra entrega</span>
+                                <i class="fa-solid fa-money-bill-wave text-brand-gold/70"></i>
+                            </label>
+                            <label class="flex items-center gap-3 border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-brand-dark bg-white cursor-pointer has-[:checked]:border-brand-gold has-[:checked]:bg-brand-cream">
+                                <input type="radio" name="co-payment" value="yape_plin" class="accent-brand-gold">
+                                <span class="flex-1">Yape / Plin</span>
+                                <i class="fa-solid fa-mobile-screen-button text-brand-gold/70"></i>
+                            </label>
+                            <label class="flex items-center gap-3 border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-brand-dark bg-white cursor-pointer has-[:checked]:border-brand-gold has-[:checked]:bg-brand-cream">
+                                <input type="radio" name="co-payment" value="tarjeta" class="accent-brand-gold">
+                                <span class="flex-1">Tarjeta contra entrega</span>
+                                <i class="fa-solid fa-credit-card text-brand-gold/70"></i>
+                            </label>
+                        </div>
+                    </div>
+                    <p id="checkout-error" class="hidden text-xs text-red-600 bg-red-50 rounded-xl px-3 py-2"></p>
+                </div>
+                <div class="p-6 border-t border-gray-100">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm text-brand-muted">Total</span>
+                        <span id="checkout-total" class="font-serif text-2xl text-brand-dark">$0.00</span>
+                    </div>
+                    <div class="flex gap-3">
+                        <button type="button" onclick="backToCart()"
+                            class="flex-1 bg-gray-100 hover:bg-gray-200 text-brand-dark py-3 rounded-xl text-xs font-medium">Volver</button>
+                        <button id="checkout-submit" type="submit"
+                            class="flex-[2] bg-brand-dark hover:bg-brand-darkHover text-white py-3 rounded-xl text-xs font-medium disabled:opacity-60 disabled:cursor-wait">Realizar pedido</button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Vista 3: pedido confirmado -->
+            <div id="cart-view-success" style="display:none" class="p-8 text-center"></div>
+        </div>
+    </div>
+
+    <div id="toast"
+        class="fixed bottom-6 right-6 bg-brand-dark text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center space-x-3 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none z-50 border border-brand-gold/30">
+        <div class="w-8 h-8 rounded-full bg-brand-gold flex items-center justify-center text-white text-xs shrink-0">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div>
+            <p class="text-sm font-semibold text-white" id="toast-title">Notificación</p>
+            <p class="text-xs text-gray-300" id="toast-subtitle">Mensaje</p>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/hero.js"></script>
+    <script src="js/contacto.js"></script>
+    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+
+</html>
